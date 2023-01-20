@@ -7,11 +7,13 @@ import problemGenerator
 
 
 def math_answers(c,d):
-    if int(d) == c:
-        print("you are correct good job")
-    else:
-        print("so close, the answer was " + str(c))
-
+    try:
+        if int(d) == c:
+            print("you are correct good job")
+        else:
+            print("so close, the answer was " + str(c))
+    except:
+        print("that is not an integer")
 def main():
     math_type = input("what kind of math would you like to work on, (+,-,*,/)")
     math_hardness = input("how difficult would you like the math to be, (easy, medium, hard )")
@@ -22,85 +24,185 @@ def main():
                 while "true":
                     chance, total, l1st = problemGenerator.problem_generator.basic.multiply_or_divide()
                     if int(chance) == 2:
-                        present = math_input.inputs.multiplication2.multiplication_alge(l1st[1],total)
-                        math_answers(l1st[0],d)
+                        d = input("what is x if, " + str(l1st["b"]) + " * x = " + str(total))
+                        math_answers(l1st["a"],d)
                     else:
-                        present = math_input.inputs.multiplication3.multiplication_alge(l1st[1], l1st[2],total)
-                        math_answers(l1st[0], d)
+                        d = input("what is x if " + str(l1st["b"]) + " * " + str(l1st["c"]) + " * x = " + str(total))
+                        math_answers(l1st["a"], d)
 
             else:
                 while True:
                     chance, total, l1st = problemGenerator.problem_generator.basic.multiply_or_divide()
-                    d = input("what is " + str(l1st[0]) + " times " + str(l1st[1]))
-                    math_answers(total,d)
+                    if chance == 2:
+                        d = input("what is " + str(l1st["a"]) + " * " + str(l1st["b"]))
+                        math_answers(total,d)
+                    else:
+                        d = input("what is " + str(l1st["a"]) + " * " + str(l1st["b"]) + " * " + str(l1st["c"]))
+                        math_answers(total, d)
         elif math_hardness == "medium":
             if algebra == "yes":
                 while True:
-                    l1st = inter_multiplication()
-                    d = input("what is x if , " + str(l1st[0]) + " times x = " + str(l1st[2]))
-                    math_answers(l1st[1], d)
+                    chance, total, l1st = problemGenerator.problem_generator.intermediate.multiply_or_divide()
+                    if chance == 2:
+                        d = input("what is x if , " + str(l1st["a"]) + " * x = " + str(total))
+                        math_answers(l1st["b"], d)
+                    else:
+                        d = input("what is x if , " + str(l1st["c"])+ " * "+ str(l1st["a"]) + " * x = " + str(total))
+                        math_answers(l1st["b"],d)
             else:
                 while True:
-                    l1st = inter_multiplication()
-                    d = input("what is " + str(l1st[0]) + " times " + str(l1st[1]))
-                    math_answers(l1st[2], d)
+                    chance, total, l1st = problemGenerator.problem_generator.intermediate.multiply_or_divide()
+                    if chance == 2:
+                        d = input("what is " + str(l1st["a"]) + " * " + str(l1st["b"]))
+                        math_answers(total, d)
+                    else:
+                        d = input("what is " + str(l1st["a"]) + " * " + str(l1st["b"]) + " * " + str(l1st["c"]))
+                        math_answers(total,d)
+        elif math_hardness == "hard":
+            if algebra == "yes":
+                while True:
+                    chance, total, l1st = problemGenerator.problem_generator.hard.multiply_or_divide()
+                    if chance == 2:
+                        d = input("what is x if , " + str(l1st["a"]) + " * x = " + str(total))
+                        math_answers(l1st["b"], d)
+                    else:
+                        d = input("what is x if , " + str(l1st["c"])+ " * "+ str(l1st["a"]) + " * x = " + str(total))
+                        math_answers(l1st["b"],d)
+            else:
+                while True:
+                    chance, total, l1st = problemGenerator.problem_generator.hard.multiply_or_divide()
+                    if chance == 2:
+                        d = input("what is " + str(l1st["a"]) + " * " + str(l1st["b"]))
+                        math_answers(total, d)
+                    else:
+                        d = input("what is " + str(l1st["a"]) + " * " + str(l1st["b"]) + " * " + str(l1st["c"]))
+                        math_answers(total,d)
         else:
             pass
     elif math_type == "+" or math_type == "addition":
         if math_hardness == "easy":
             if algebra == "yes":
                 while True:
-                    l1st= basic_algebra_addition()
-                    d = input("what is x if,  " + str(l1st[1]) + " = " + str(l1st[0]) + " + x")
-                    math_answers(l1st[2],d)
+                    chance, total, l1st= problemGenerator.problem_generator.basic.add_or_subtract()
+                    if chance == 2:
+                        d = input("what is x if,  " + str(total) + " = " + str(l1st["a"]) + " + x")
+                        math_answers(l1st["b"],d)
+                    else:
+                        d = input("what is x if,  " + str(total) + " = " + str(l1st["a"]) + " + " + str(l1st["b"]) + " + " + " x")
+                        math_answers(l1st["c"],d)
             elif algebra == "no":
                 while True:
-                    l1st = basic_addition()
-                    d = input("what is " + str(l1st[0]) + " plus " + str(l1st[1]))
-                    math_answers(l1st[2],d)
+                    chance, total, l1st = problemGenerator.problem_generator.basic.add_or_subtract()
+                    if chance == 2:
+                        d = input("what is " + str(l1st["a"]) + " + " + str(l1st["b"]))
+                        math_answers(total,d)
+                    else:
+                        d = input("what is " + str(l1st["a"]) + " + " + str(l1st["b"]) + " + " + str(l1st["c"]))
+                        math_answers(total, d)
             else:
                 pass
         elif math_hardness == "medium":
             if algebra == "yes":
                 while True:
-                    l1st = inter_addition()
-                    d = input("what is x if , " + str(l1st[0]) + " plus  x  = " + str(l1st[2]))
-                    math_answers(l1st[1], d)
+                    chance, total, l1st = problemGenerator.problem_generator.intermediate.add_or_subtract()
+                    if chance == 2:
+                        d = input("what is x if , " + str(l1st["a"]) + " +  x  = " + str(total))
+                        math_answers(l1st["b"], d)
+                    else:
+                        d = input("what is x if , " + str(l1st["a"]) + " + " + str(l1st["c"]) +" +  x  = " + str(total))
+                        math_answers(l1st["b"], d)
             elif algebra == "no":
                 while True:
-                    l1st = inter_addition()
-                    d = input("what is " + str(l1st[0]) + " plus " + str(l1st[1]))
-                    math_answers(l1st[2], d)
+                    chance, total, l1st = problemGenerator.problem_generator.intermediate.add_or_subtract()
+                    if chance == 2:
+                        d = input("what is " + str(l1st["a"]) + " + " + str(l1st["b"]))
+                        math_answers(total, d)
+                    else:
+                        d = input("what is " + str(l1st["a"]) + " + " + str(l1st["b"]) + " + " + str(l1st["c"]))
+                        math_answers(total, d)
             else:
                 pass
-
+        elif math_hardness == "hard":
+            if algebra == "yes":
+                while True:
+                    chance, total, l1st = problemGenerator.problem_generator.hard.add_or_subtract()
+                    if chance == 2:
+                        d = input("what is x if , " + str(l1st["a"]) + " +  x  = " + str(total))
+                        math_answers(l1st["b"], d)
+                    else:
+                        d = input("what is x if , " + str(l1st["a"]) + " + " + str(l1st["c"]) +" +  x  = " + str(total))
+                        math_answers(l1st["b"], d)
+            elif algebra == "no":
+                while True:
+                    chance, total, l1st = problemGenerator.problem_generator.hard.add_or_subtract()
+                    if chance == 2:
+                        d = input("what is " + str(l1st["a"]) + " + " + str(l1st["b"]))
+                        math_answers(total, d)
+                    else:
+                        d = input("what is " + str(l1st["a"]) + " + " + str(l1st["b"]) + " + " + str(l1st["c"]))
+                        math_answers(total, d)
         else:
             pass
     elif  math_type == "-" or math_type == "subtraction":
         if math_hardness == "easy":
             if algebra == "yes":
                 while True:
-                    l1st = basic_algebra_subtraction()
-                    d = input("what is x if, " + str(l1st[1]) + " = " + str(l1st[0]) + " - x")
-                    math_answers(l1st[2],d)
+                    chance, total, l1st = problemGenerator.problem_generator.basic.add_or_subtract()
+                    if chance == 2:
+                        d = input("what is x if, " + str(l1st["a"]) + " = " + str(total) + " - x")
+                        math_answers(l1st["b"],d)
+                    else:
+                        d = input("what is x if, " + str(l1st["a"]) + " = " + str(total) + " - " +str(l1st["c"]) + " - x")
+                        math_answers(l1st["b"], d)
             elif algebra == "no":
                 while True:
-                    l1st = basic_subtraction()
-                    d = input("what is " + str(l1st[0]) + " minus " + str(l1st[1]))
-                    math_answers(l1st[2],d)
+                    chance, total, l1st = problemGenerator.problem_generator.basic.add_or_subtract()
+                    if chance == 2:
+                        d = input("what is " + str(total) + " - " + str(l1st["b"]))
+                        math_answers(l1st["a"],d)
+                    else:
+                        d = input("what is " + str(total) + " - " + str(l1st["b"]) + " - " + str(l1st["c"]))
+                        math_answers(l1st["a"], d)
             else:
                 pass
         elif math_hardness == "medium":
             if algebra == "yes":
                 while True:
-                    l1st = inter_subtraction()
-                    d = input("what is x if, " + str(l1st[2]) + " = " + str(l1st[0]) + " - x" )
-                    math_answers(l1st[1], d)
+                    chance, total, l1st = problemGenerator.problem_generator.intermediate.add_or_subtract()
+                    if chance == 2:
+                        d = input("what is x if, " + str(l1st["a"]) + " = " + str(total) + " - x" )
+                        math_answers(l1st["b"], d)
+                    else:
+                        d = input("what is x if, " + str(l1st["a"]) + " = " + str(total) + " - " + str(l1st["c"]) + " - x")
+                        math_answers(l1st["b"], d)
             else:
                 while True:
-                    l1st = inter_subtraction()
-                    d = input("what is " + str(l1st[0]) + " minus " + str(l1st[1]))
-                    math_answers(l1st[2], d)
+                    chance, total, l1st = problemGenerator.problem_generator.intermediate.add_or_subtract()
+                    if chance == 2:
+                        d = input("what is " + str(total) + " - " + str(l1st["b"]))
+                        math_answers(l1st["a"], d)
+                    else:
+                        d = input("what is " + str(total) + " - " + str(l1st["b"]) + " - " + str(l1st["c"]))
+                        math_answers(l1st["a"], d)
+        elif math_hardness == "hard":
+            if algebra == "yes":
+                while True:
+                    chance, total, l1st = problemGenerator.problem_generator.hard.add_or_subtract()
+                    if chance == 2:
+                        d = input("what is x if, " + str(l1st["a"]) + " = " + str(total) + " - x" )
+                        math_answers(l1st["b"], d)
+                    else:
+                        d = input("what is x if, " + str(l1st["a"]) + " = " + str(total) + " - " + str(l1st["c"]) + " - x")
+                        math_answers(l1st["b"], d)
+            else:
+                while True:
+                    chance, total, l1st = problemGenerator.problem_generator.hard.add_or_subtract()
+                    if chance == 2:
+                        d = input("what is " + str(total) + " - " + str(l1st["b"]))
+                        math_answers(l1st["a"], d)
+                    else:
+                        d = input("what is " + str(total) + " - " + str(l1st["b"]) + " - " + str(l1st["c"]))
+                        math_answers(l1st["a"], d)
         else:
             pass
     elif  math_type == "/" or math_type == "division":
@@ -108,21 +210,21 @@ def main():
             if algebra == "yes":
                 while True:
                     chance, total, l1st = problemGenerator.problem_generator.basic.multiply_or_divide()
-                    if int(chance) == 2
-                        d = input("what is x if , " + str(total) + " = " + str(l1st[0]) + " / x")
-                        math_answers(l1st[1],d)
+                    if int(chance) == 2:
+                        d = input("what is x if , " + str(l1st["a"]) + " = " + str(total) + " / x")
+                        math_answers(l1st["b"],d)
                     else:
-                        d = math_input.inputs.division3.division_alge(total,l1st[1],l1st[2])
-                        math_answers(l1st[0],d)
+                        d = input("what is x if , " + str(l1st["a"]) + " = " + str(total) + " / " + str(l1st["c"])  +" / x")
+                        math_answers(l1st["ab"],d)
             elif algebra == "no":
                 while True:
                     chance, total,l1st = problemGenerator.problem_generator.basic.multiply_or_divide()
                     if int(chance) == 2:
-                        d = input("what is " + str(total) + " divided by " + str(l1st[1]))
-                        math_answers(l1st[0],d)
+                        d = input("what is " + str(total) + " /  " + str(l1st["b"]))
+                        math_answers(l1st["a"],d)
                     else:
-                        d = math_input.inputs.division3.division_norm(total,l1st[1],l1st[2])
-                        math_answers(l1st[0],d)
+                        d = input("what is " + str(total) + " / " + str(l1st["b"]) + " / " + l1st["c"])
+                        math_answers(l1st["a"],d)
             else:
                 pass
 
@@ -131,20 +233,39 @@ def main():
                 while True:
                     chance, total, l1st = problemGenerator.problem_generator.intermediate.multiply_or_divide()
                     if int(chance) == 2:
-                        d = input("what is x if, " + str(total) + " = " + str(l1st[1]) + " divided by x")
-                        math_answers(l1st[0], d)
+                        d = input("what is x if, " + str(l1st["b"]) + " = " + str(total) + " / x")
+                        math_answers(l1st["a"], d)
                     else:
-                        d = math_input.inputs.division3.division_alge(total,l1st[1],l1st[2])
-                        math_answers(l1st[0],d)
+                        d = input("what is x if, " + str(l1st["c"]) + " = " + str(total) + " / " + str(l1st["b"]) + " / x")
+                        math_answers(l1st["a"],d)
             else:
                 while True:
                     chance, total, l1st = problemGenerator.problem_generator.intermediate.multiply_or_divide()
                     if int(chance) == 2:
-                        d = input("what is " + str(total) + " divided by " + str(l1st[1]))
-                        math_answers(l1st[0], d)
+                        d = input("what is " + str(total) + " / " + str(l1st["b"]))
+                        math_answers(l1st["a"], d)
                     else:
-                        d = math_input.inputs.division3.division_norm(total,l1st[1],l1st[2])
-                        math_answers(l1st[0],d)
+                        d = input("what is " + str(total) + " / " + str(l1st["b"]) + " / " + str(l1st["c"]))
+                        math_answers(l1st["a"],d)
+        elif math_hardness == "hard":
+            if algebra == "yes":
+                while True:
+                    chance, total, l1st = problemGenerator.problem_generator.hard.multiply_or_divide()
+                    if int(chance) == 2:
+                        d = input("what is x if, " + str(l1st["b"]) + " = " + str(total) + " / x")
+                        math_answers(l1st["a"], d)
+                    else:
+                        d = input("what is x if, " + str(l1st["c"]) + " = " + str(total) + " / " + str(l1st["b"]) + " / x")
+                        math_answers(l1st["a"],d)
+            else:
+                while True:
+                    chance, total, l1st = problemGenerator.problem_generator.hard.multiply_or_divide()
+                    if int(chance) == 2:
+                        d = input("what is " + str(total) + " / " + str(l1st["b"]))
+                        math_answers(l1st["a"], d)
+                    else:
+                        d = input("what is " + str(total) + " / " + str(l1st["b"]) + " / " + str(l1st["c"]))
+                        math_answers(l1st["a"],d)
         else:
             pass
     else:

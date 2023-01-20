@@ -2,7 +2,7 @@ import random
 class problem_generator:
     possible_variables = {0 :"a", 1 : "b", 2 : "c", 3 : "d" }
     class basic:
-        def add_or_subtract(self):
+        def add_or_subtract():
             maybe = random.randint(2, 3)
             possible_values = {}
             total = 0
@@ -19,10 +19,10 @@ class problem_generator:
                     possible_values[variable] = random.randint(-50, 50)
                     total += possible_values[variable]
             return maybe, total, possible_values
-        def multiply_or_divide(self):
+        def multiply_or_divide():
             maybe = random.randint(2,3)
             possible_values = {}
-            total = 0
+            total = 1
 
             if maybe == 2:
 
@@ -36,10 +36,10 @@ class problem_generator:
                     variable = problem_generator.possible_variables[i]
                     possible_values[variable] = random.randint(1, 5)
                     total *= possible_values[variable]
-            return maybe, possible_values, total
+            return maybe, total, possible_values
     class intermediate:
 
-        def add_or_subtract(self):
+        def add_or_subtract():
             maybe = random.randint(2,3)
             possible_values = {}
             total = 0
@@ -56,10 +56,10 @@ class problem_generator:
                     possible_values[variable] = random.randint(-25, 25)
                     total += possible_values[variable]
             return maybe, total, possible_values
-        def multiply_or_divide(self):
+        def multiply_or_divide():
             maybe = random.randint(2,3)
             possible_values = {}
-            total = 0
+            total = 1
 
             if maybe == 2:
 
@@ -83,10 +83,10 @@ class problem_generator:
                         num = 6
                     possible_values[variable] = num
                     total *= possible_values[variable]
-            return maybe, possible_values, total
+            return maybe, total, possible_values
 
     class hard:
-        def add_or_subtract(self):
+        def add_or_subtract():
             maybe = random.randint(2,3)
             possible_values = {}
             total = 0
@@ -104,10 +104,10 @@ class problem_generator:
                     total += possible_values[variable]
             return maybe, total, possible_values
 
-        def multiply_or_divide(self,):
+        def multiply_or_divide():
             maybe = random.randint(2,3)
             possible_values = {}
-            total = 0
+            total = 1
 
             if maybe == 2:
 
@@ -131,7 +131,7 @@ class problem_generator:
                         num = 10
                     possible_values[variable] = num
                     total *= possible_values[variable]
-            return maybe, possible_values, total
+            return maybe, total, possible_values
 
 
 

@@ -2,6 +2,7 @@
 import random
 # Press Shift+F10 to execute it or replace it with your code.
 # Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
+import math_input
 import problemGenerator
 
 
@@ -20,11 +21,11 @@ def main():
             if algebra == "yes":
                 while "true":
                     chance, total, l1st = problemGenerator.problem_generator.basic.multiply_or_divide()
-                    if int(l1st[0]) == 2:
-                        d = input("what is x if , " + str(total) + " = " + str(l1st[1]) + " * x")
+                    if int(chance) == 2:
+                        present = math_input.inputs.multiplication2.multiplication_alge(l1st[1],total)
                         math_answers(l1st[0],d)
                     else:
-                        d = input("what is x if , " + str(total) + " = " + str(l1st[1]) + " * " + str(l1st[2]) + " * x")
+                        present = math_input.inputs.multiplication3.multiplication_alge(l1st[1], l1st[2],total)
                         math_answers(l1st[0], d)
 
             else:
@@ -106,28 +107,44 @@ def main():
         if math_hardness == "easy":
             if algebra == "yes":
                 while True:
-                    l1st = basic_algebra_division()
-                    d = input("what is x if , " + str(l1st[1]) + " = " + str(l1st[0]) + " / x")
-                    math_answers(l1st[2],d)
+                    chance, total, l1st = problemGenerator.problem_generator.basic.multiply_or_divide()
+                    if int(chance) == 2
+                        d = input("what is x if , " + str(total) + " = " + str(l1st[0]) + " / x")
+                        math_answers(l1st[1],d)
+                    else:
+                        d = math_input.inputs.division3.division_alge(total,l1st[1],l1st[2])
+                        math_answers(l1st[0],d)
             elif algebra == "no":
                 while True:
-                    l1st = basic_division()
-                    d = input("what is " + str(l1st[0]) + " divided by " + str(l1st[1]))
-                    math_answers(l1st[2],d)
+                    chance, total,l1st = problemGenerator.problem_generator.basic.multiply_or_divide()
+                    if int(chance) == 2:
+                        d = input("what is " + str(total) + " divided by " + str(l1st[1]))
+                        math_answers(l1st[0],d)
+                    else:
+                        d = math_input.inputs.division3.division_norm(total,l1st[1],l1st[2])
+                        math_answers(l1st[0],d)
             else:
                 pass
 
         elif math_hardness == "medium":
             if algebra == "yes":
                 while True:
-                    l1st = inter_division()
-                    d = input("what is x if, " + str(l1st[2]) + " = " + str(l1st[1]) + " divided by x")
-                    math_answers(l1st[0], d)
+                    chance, total, l1st = problemGenerator.problem_generator.intermediate.multiply_or_divide()
+                    if int(chance) == 2:
+                        d = input("what is x if, " + str(total) + " = " + str(l1st[1]) + " divided by x")
+                        math_answers(l1st[0], d)
+                    else:
+                        d = math_input.inputs.division3.division_alge(total,l1st[1],l1st[2])
+                        math_answers(l1st[0],d)
             else:
                 while True:
-                    l1st = inter_division()
-                    d = input("what is " + str(l1st[2]) + " divided by " + str(l1st[1]))
-                    math_answers(l1st[0], d)
+                    chance, total, l1st = problemGenerator.problem_generator.intermediate.multiply_or_divide()
+                    if int(chance) == 2:
+                        d = input("what is " + str(total) + " divided by " + str(l1st[1]))
+                        math_answers(l1st[0], d)
+                    else:
+                        d = math_input.inputs.division3.division_norm(total,l1st[1],l1st[2])
+                        math_answers(l1st[0],d)
         else:
             pass
     else:
